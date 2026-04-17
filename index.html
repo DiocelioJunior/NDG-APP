@@ -14,8 +14,11 @@
       --primary-dark: #4f46e5;
       --accent: #22c55e;
       --border: #e5e7eb;
-      --shadow: 0 12px 30px rgba(0,0,0,0.08);
+      --shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
       --radius: 22px;
+      --green: #166534;
+      --amber: #b45309;
+      --red: #b91c1c;
     }
 
     * {
@@ -83,8 +86,8 @@
 
     .hero-badge {
       min-width: 72px;
-      background: rgba(255,255,255,0.16);
-      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.18);
       border-radius: 18px;
       padding: 10px;
       text-align: center;
@@ -129,12 +132,6 @@
       margin-bottom: 6px;
     }
 
-    .current-game {
-      font-weight: bold;
-      color: #fff;
-      margin-top: 8px;
-    }
-
     .bottom-nav {
       position: fixed;
       left: 50%;
@@ -148,10 +145,10 @@
       gap: 8px;
       padding: 8px;
       border-radius: 22px;
-      background: rgba(255,255,255,0.82);
+      background: rgba(255, 255, 255, 0.82);
       backdrop-filter: blur(16px);
       box-shadow: var(--shadow);
-      border: 1px solid rgba(255,255,255,0.7);
+      border: 1px solid rgba(255, 255, 255, 0.7);
     }
 
     .nav-link {
@@ -245,14 +242,13 @@
       color: var(--red);
     }
 
-    .btn.active {
-      background: #111827;
-      color: white;
-    }
-
-    .btn:disabled {
-      opacity: 0.5;
+    .btn:disabled,
+    .scoreboard-btn:disabled,
+    .bracket-mini-btn:disabled,
+    .ranking-step-btn:disabled {
+      opacity: 0.55;
       cursor: not-allowed;
+      transform: none;
     }
 
     .list {
@@ -311,28 +307,30 @@
       font-weight: bold;
     }
 
-    .match-box {
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 12px;
-      margin-bottom: 10px;
-      background: #fff;
+    .ranking-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 6px;
+      align-items: center;
     }
 
-    .match-title {
-      color: var(--muted);
-      margin-bottom: 10px;
+    .ranking-step-btn {
+      width: 34px;
+      min-width: 34px;
+      height: 34px;
+      border: 1px solid #dbe4ff;
+      border-radius: 10px;
+      background: #eef2ff;
+      color: #312e81;
+      font-size: 18px;
+      font-weight: 800;
+      cursor: pointer;
     }
 
-    .match-buttons {
-      display: grid;
-      gap: 8px;
-    }
-
-    .winner {
-      color: var(--green);
-      font-weight: bold;
-      margin-top: 10px;
+    .ranking-step-btn.danger {
+      background: #fff1f2;
+      color: #be123c;
+      border-color: #fecdd3;
     }
 
     .podium {
@@ -404,6 +402,30 @@
       font-size: 12px;
     }
 
+    .bracket-item-actions {
+      display: grid;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .bracket-mini-btn {
+      min-height: 34px;
+      border: 1px solid #dbe4ff;
+      border-radius: 10px;
+      background: #eef2ff;
+      color: #312e81;
+      font-size: 12px;
+      font-weight: 800;
+      padding: 6px 10px;
+      cursor: pointer;
+    }
+
+    .bracket-mini-btn.danger {
+      background: #fff1f2;
+      color: #be123c;
+      border-color: #fecdd3;
+    }
+
     .current-match-card {
       border: none;
       border-radius: 24px;
@@ -422,16 +444,19 @@
       width: 120px;
       height: 120px;
       border-radius: 50%;
-      background: rgba(255,255,255,0.08);
+      background: rgba(255, 255, 255, 0.08);
+      pointer-events: none;
     }
 
     .scoreboard-stage {
       font-size: 12px;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      color: rgba(255,255,255,0.8);
+      color: rgba(255, 255, 255, 0.8);
       margin-bottom: 12px;
       font-weight: 700;
+      position: relative;
+      z-index: 1;
     }
 
     .scoreboard-mode-row {
@@ -440,6 +465,8 @@
       justify-content: space-between;
       gap: 10px;
       margin-bottom: 14px;
+      position: relative;
+      z-index: 1;
     }
 
     .scoreboard-mode-badge {
@@ -449,8 +476,8 @@
       min-height: 34px;
       padding: 0 12px;
       border-radius: 999px;
-      background: rgba(255,255,255,0.14);
-      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.2);
       color: white;
       font-size: 12px;
       font-weight: 700;
@@ -463,9 +490,11 @@
       gap: 10px;
       padding: 16px 14px;
       border-radius: 20px;
-      background: rgba(255,255,255,0.12);
-      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.16);
       backdrop-filter: blur(6px);
+      position: relative;
+      z-index: 1;
     }
 
     .scoreboard-side {
@@ -496,7 +525,7 @@
       justify-content: center;
       font-size: 16px;
       font-weight: 800;
-      color: rgba(255,255,255,0.8);
+      color: rgba(255, 255, 255, 0.8);
       padding: 0 2px;
     }
 
@@ -505,6 +534,8 @@
       grid-template-columns: 1fr 1fr;
       gap: 10px;
       margin-top: 14px;
+      position: relative;
+      z-index: 1;
     }
 
     .scoreboard-btn {
@@ -516,34 +547,22 @@
       font-weight: 800;
       padding: 10px 12px;
       cursor: pointer;
+      transition: all 0.2s ease;
     }
 
     .scoreboard-btn.alt {
-      background: rgba(255,255,255,0.14);
+      background: rgba(255, 255, 255, 0.14);
       color: white;
-      border: 1px solid rgba(255,255,255,0.2);
+      border: 1px solid rgba(255, 255, 255, 0.2);
     }
 
     .scoreboard-help {
       margin-top: 12px;
       font-size: 12px;
-      color: rgba(255,255,255,0.82);
+      color: rgba(255, 255, 255, 0.82);
       text-align: center;
-    }
-
-    .current-match-label {
-      font-size: 12px;
-      color: var(--muted);
-      margin-bottom: 8px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      font-weight: bold;
-    }
-
-    .current-match-title {
-      font-size: 16px;
-      font-weight: bold;
-      margin-bottom: 12px;
+      position: relative;
+      z-index: 1;
     }
 
     .current-match-empty {
@@ -597,7 +616,7 @@
       animation: revealPop 0.55s ease;
     }
 
-    .drawGameBtn.is-drawing {
+    #drawGameBtn.is-drawing {
       animation: buttonPulse 0.8s infinite ease-in-out;
     }
 
@@ -656,6 +675,15 @@
       .hero-game-name {
         font-size: 24px;
       }
+
+      .scoreboard-shell {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .scoreboard-divider {
+        order: 3;
+      }
     }
   </style>
 </head>
@@ -689,7 +717,7 @@
     <section id="secao-sorteio" class="card section-card active">
       <h2>Sortear jogo</h2>
       <div class="draw-button-wrap">
-        <button id="drawGameBtn" class="btn full">Sortear agora</button>
+        <button id="drawGameBtn" class="btn full" type="button">Sortear agora</button>
         <div id="drawSpinner" class="draw-spinner">
           <span class="draw-dot"></span>
           <span class="draw-dot"></span>
@@ -704,7 +732,7 @@
       <h2>Jogos cadastrados</h2>
       <div class="row" style="margin-bottom:12px;">
         <input id="newGameInput" class="input" type="text" placeholder="Adicionar jogo" />
-        <button id="addGameBtn" class="btn small">+</button>
+        <button id="addGameBtn" class="btn small" type="button">+</button>
       </div>
       <div id="gamesList" class="list"></div>
     </section>
@@ -713,7 +741,7 @@
       <h2>Jogadores cadastrados</h2>
       <div class="row" style="margin-bottom:12px;">
         <input id="newPlayerInput" class="input" type="text" placeholder="Adicionar jogador" />
-        <button id="addPlayerBtn" class="btn small">+</button>
+        <button id="addPlayerBtn" class="btn small" type="button">+</button>
       </div>
       <div id="playersList" class="list"></div>
     </section>
@@ -728,12 +756,8 @@
     <section id="secao-pontuacao" class="card section-card">
       <h2>Pontuação</h2>
       <div id="rankingArea"></div>
-    </section>
-
-    <section id="secao-controles" class="card section-card">
-      <h2>Controles</h2>
-      <div class="footer-actions">
-        <button id="resetBtn" class="btn danger">Resetar tudo</button>
+      <div class="footer-actions" style="margin-top:14px;">
+        <button id="resetBtn" class="btn danger" type="button">Resetar tudo</button>
       </div>
     </section>
   </div>
@@ -791,7 +815,7 @@
       try {
         const value = localStorage.getItem(key);
         return value ? JSON.parse(value) : fallback;
-      } catch {
+      } catch (error) {
         return fallback;
       }
     }
@@ -809,8 +833,8 @@
     }
 
     function ensureInitialData() {
-      state.games = load(STORAGE_KEYS.games, DEFAULT_GAMES);
-      state.players = load(STORAGE_KEYS.players, DEFAULT_PLAYERS);
+      state.games = load(STORAGE_KEYS.games, DEFAULT_GAMES.slice());
+      state.players = load(STORAGE_KEYS.players, DEFAULT_PLAYERS.slice());
       state.drawnGames = load(STORAGE_KEYS.drawnGames, []);
       state.scores = load(STORAGE_KEYS.scores, {});
       state.tournament = load(STORAGE_KEYS.tournament, null);
@@ -821,7 +845,32 @@
         }
       });
 
+      if (state.tournament) {
+        hydrateTournament(state.tournament);
+      }
+
       saveAll();
+    }
+
+    function hydrateTournament(tournament) {
+      if (!tournament || !tournament.rounds) return;
+      ["quarterFinals", "semiFinals", "final", "thirdPlace"].forEach(function(roundKey) {
+        const round = tournament.rounds[roundKey] || [];
+        round.forEach(function(match) {
+          if (!Array.isArray(match.history)) {
+            match.history = [];
+          }
+          if (typeof match.bestOf3 !== "boolean") {
+            match.bestOf3 = false;
+          }
+          if (typeof match.score1 !== "number") {
+            match.score1 = 0;
+          }
+          if (typeof match.score2 !== "number") {
+            match.score2 = 0;
+          }
+        });
+      });
     }
 
     function shuffle(array) {
@@ -843,14 +892,15 @@
 
     function createMatch(id, player1, player2) {
       return {
-        id: id,
-        player1: player1,
-        player2: player2,
+        id,
+        player1,
+        player2,
         winner: null,
         loser: null,
         bestOf3: false,
         score1: 0,
-        score2: 0
+        score2: 0,
+        history: []
       };
     }
 
@@ -871,14 +921,14 @@
       }
 
       return {
-        game: game,
+        game,
         champion: null,
         vice: null,
         third: null,
         pointsApplied: false,
-        byes: byes,
+        byes,
         rounds: {
-          quarterFinals: quarterFinals,
+          quarterFinals,
           semiFinals: [],
           final: [],
           thirdPlace: []
@@ -914,15 +964,48 @@
       ];
     }
 
-    function finalizeTournament() {
+    function refreshTournamentOutcome() {
+      if (!state.tournament) return;
+
+      state.tournament.champion = null;
+      state.tournament.vice = null;
+      state.tournament.third = null;
+
       const finalMatch = state.tournament.rounds.final[0];
       const thirdMatch = state.tournament.rounds.thirdPlace[0];
-      if (!finalMatch || !thirdMatch) return;
-      if (!finalMatch.winner || !finalMatch.loser || !thirdMatch.winner) return;
 
-      state.tournament.champion = finalMatch.winner;
-      state.tournament.vice = finalMatch.loser;
-      state.tournament.third = thirdMatch.winner;
+      if (finalMatch && finalMatch.winner && finalMatch.loser) {
+        state.tournament.champion = finalMatch.winner;
+        state.tournament.vice = finalMatch.loser;
+      }
+
+      if (thirdMatch && thirdMatch.winner) {
+        state.tournament.third = thirdMatch.winner;
+      }
+    }
+
+    function resetDependentRounds(roundName) {
+      if (!state.tournament) return;
+
+      if (roundName === "quarterFinals") {
+        state.tournament.rounds.semiFinals = [];
+        state.tournament.rounds.final = [];
+        state.tournament.rounds.thirdPlace = [];
+      } else if (roundName === "semiFinals") {
+        state.tournament.rounds.final = [];
+        state.tournament.rounds.thirdPlace = [];
+      }
+
+      refreshTournamentOutcome();
+    }
+
+    function canEditMatch() {
+      if (!state.tournament) return false;
+      if (state.tournament.pointsApplied) {
+        alert("Desfaça a pontuação antes de editar partidas.");
+        return false;
+      }
+      return true;
     }
 
     function completeMatch(match, winnerName) {
@@ -930,8 +1013,59 @@
       match.loser = match.player1 === winnerName ? match.player2 : match.player1;
     }
 
+    function rebuildMatchState(match) {
+      match.score1 = 0;
+      match.score2 = 0;
+      match.winner = null;
+      match.loser = null;
+
+      if (!Array.isArray(match.history)) {
+        match.history = [];
+      }
+
+      if (match.bestOf3) {
+        match.history.forEach(function(winnerName) {
+          if (winnerName === match.player1) {
+            match.score1 += 1;
+          } else if (winnerName === match.player2) {
+            match.score2 += 1;
+          }
+        });
+
+        if (match.score1 >= 2) completeMatch(match, match.player1);
+        if (match.score2 >= 2) completeMatch(match, match.player2);
+      } else if (match.history.length > 0) {
+        const lastWinner = match.history[match.history.length - 1];
+        match.score1 = lastWinner === match.player1 ? 1 : 0;
+        match.score2 = lastWinner === match.player2 ? 1 : 0;
+        completeMatch(match, lastWinner);
+      }
+    }
+
+    function undoCurrentMatchWin(roundName, matchId) {
+      if (!canEditMatch()) return;
+
+      const round = state.tournament.rounds[roundName] || [];
+      const match = round.find(function(item) {
+        return item.id === matchId;
+      });
+
+      if (!match || !Array.isArray(match.history) || match.history.length === 0) return;
+
+      match.history.pop();
+      rebuildMatchState(match);
+      resetDependentRounds(roundName);
+      refreshTournamentOutcome();
+      saveAll();
+      render();
+    }
+
+    function undoMatchWin(roundName, matchId) {
+      undoCurrentMatchWin(roundName, matchId);
+    }
+
     function toggleBestOf3(roundName, matchId) {
-      const round = state.tournament.rounds[roundName];
+      const round = state.tournament.rounds[roundName] || [];
       const match = round.find(function(item) {
         return item.id === matchId;
       });
@@ -943,18 +1077,25 @@
       match.score2 = 0;
       match.winner = null;
       match.loser = null;
+      match.history = [];
 
       saveAll();
       render();
     }
 
     function selectWinner(roundName, matchId, winnerName) {
-      const round = state.tournament.rounds[roundName];
+      const round = state.tournament.rounds[roundName] || [];
       const match = round.find(function(item) {
         return item.id === matchId;
       });
 
-      if (!match) return;
+      if (!match || match.winner) return;
+
+      if (!Array.isArray(match.history)) {
+        match.history = [];
+      }
+
+      match.history.push(winnerName);
 
       if (match.bestOf3) {
         if (winnerName === match.player1) {
@@ -963,13 +1104,8 @@
           match.score2 += 1;
         }
 
-        if (match.score1 >= 2) {
-          completeMatch(match, match.player1);
-        }
-
-        if (match.score2 >= 2) {
-          completeMatch(match, match.player2);
-        }
+        if (match.score1 >= 2) completeMatch(match, match.player1);
+        if (match.score2 >= 2) completeMatch(match, match.player2);
       } else {
         match.score1 = winnerName === match.player1 ? 1 : 0;
         match.score2 = winnerName === match.player2 ? 1 : 0;
@@ -984,27 +1120,42 @@
         buildFinals();
       }
 
-      if (
-        (roundName === "final" || roundName === "thirdPlace") &&
-        state.tournament.rounds.final[0] &&
-        state.tournament.rounds.thirdPlace[0] &&
-        state.tournament.rounds.final[0].winner &&
-        state.tournament.rounds.thirdPlace[0].winner
-      ) {
-        finalizeTournament();
-      }
-
+      refreshTournamentOutcome();
       saveAll();
       render();
     }
 
     function applyPoints() {
-      if (!state.tournament || !state.tournament.champion || state.tournament.pointsApplied) return;
+      if (!state.tournament || !state.tournament.champion || !state.tournament.third || state.tournament.pointsApplied) return;
 
       state.scores[state.tournament.champion] = (state.scores[state.tournament.champion] || 0) + 3;
       state.scores[state.tournament.vice] = (state.scores[state.tournament.vice] || 0) + 2;
       state.scores[state.tournament.third] = (state.scores[state.tournament.third] || 0) + 1;
       state.tournament.pointsApplied = true;
+
+      saveAll();
+      render();
+    }
+
+    function undoPoints() {
+      if (!state.tournament || !state.tournament.pointsApplied) return;
+
+      state.scores[state.tournament.champion] = Math.max(0, (state.scores[state.tournament.champion] || 0) - 3);
+      state.scores[state.tournament.vice] = Math.max(0, (state.scores[state.tournament.vice] || 0) - 2);
+      state.scores[state.tournament.third] = Math.max(0, (state.scores[state.tournament.third] || 0) - 1);
+      state.tournament.pointsApplied = false;
+
+      saveAll();
+      render();
+    }
+
+    function adjustPlayerScore(playerName, delta) {
+      if (!Object.prototype.hasOwnProperty.call(state.scores, playerName)) {
+        state.scores[playerName] = 0;
+      }
+
+      const nextValue = (state.scores[playerName] || 0) + delta;
+      state.scores[playerName] = Math.max(0, nextValue);
 
       saveAll();
       render();
@@ -1111,52 +1262,22 @@
       localStorage.removeItem(STORAGE_KEYS.scores);
       localStorage.removeItem(STORAGE_KEYS.tournament);
 
-      ensureInitialData();
-      render();
-    }
-
-    function renderGames() {
-      const container = document.getElementById("gamesList");
-      container.innerHTML = "";
-
-      state.games.forEach(function(game) {
-        const item = document.createElement("div");
-        item.className = "list-item";
-
-        const left = document.createElement("div");
-        left.innerHTML = "<strong>" + game + "</strong>" + (state.drawnGames.includes(game) ? '<div class="tag">Já sorteado</div>' : '');
-
-        const btn = document.createElement("button");
-        btn.className = "btn danger small";
-        btn.textContent = "×";
-        btn.onclick = function() { removeGame(game); };
-
-        item.appendChild(left);
-        item.appendChild(btn);
-        container.appendChild(item);
-      });
-    }
-
-    function renderPlayers() {
-      const container = document.getElementById("playersList");
-      container.innerHTML = "";
+      state = {
+        games: DEFAULT_GAMES.slice(),
+        players: DEFAULT_PLAYERS.slice(),
+        drawnGames: [],
+        scores: {},
+        tournament: null,
+        isDrawing: false
+      };
 
       state.players.forEach(function(player) {
-        const item = document.createElement("div");
-        item.className = "list-item";
-
-        const left = document.createElement("div");
-        left.innerHTML = "<strong>" + player + "</strong>";
-
-        const btn = document.createElement("button");
-        btn.className = "btn danger small";
-        btn.textContent = "×";
-        btn.onclick = function() { removePlayer(player); };
-
-        item.appendChild(left);
-        item.appendChild(btn);
-        container.appendChild(item);
+        state.scores[player] = 0;
       });
+
+      saveAll();
+      setActiveSection("secao-sorteio");
+      render();
     }
 
     function escapeHtml(text) {
@@ -1164,8 +1285,16 @@
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;")
-        .replace(/\"/g, "&quot;")
+        .replace(/"/g, "&quot;")
         .replace(/'/g, "&#039;");
+    }
+
+    function escapeJsString(text) {
+      return String(text)
+        .replace(/\\/g, "\\\\")
+        .replace(/'/g, "\\'")
+        .replace(/\n/g, " ")
+        .replace(/\r/g, " ");
     }
 
     function getCurrentMatch() {
@@ -1197,8 +1326,25 @@
       return null;
     }
 
+    function createButtonHTML(className, label, handlerName, args, disabled) {
+      const serializedArgs = args.map(function(arg) {
+        return "'" + escapeJsString(arg) + "'";
+      }).join(",");
+      const safeLabel = escapeHtml(label);
+      return '<button class="' + className + '" type="button" onclick="' + handlerName + '(' + serializedArgs + ')"' + (disabled ? ' disabled' : '') + '>' + safeLabel + '</button>';
+    }
+
     function createBracketColumn(title, matches) {
-      let html = '<div class="bracket-column"><h3>' + title + '</h3>';
+      let html = '<div class="bracket-column"><h3>' + escapeHtml(title) + '</h3>';
+      let roundName = 'thirdPlace';
+
+      if (title === 'Quartas / Eliminatória inicial') {
+        roundName = 'quarterFinals';
+      } else if (title === 'Semifinais') {
+        roundName = 'semiFinals';
+      } else if (title === 'Final') {
+        roundName = 'final';
+      }
 
       if (!matches || !matches.length) {
         html += '<div class="bracket-item muted">Aguardando definição</div>';
@@ -1215,6 +1361,11 @@
         }
         if (match.winner) {
           html += '<div class="bracket-winner">Vencedor: ' + escapeHtml(match.winner) + '</div>';
+        }
+        if (match.history && match.history.length > 0) {
+          html += '<div class="bracket-item-actions">';
+          html += createButtonHTML('bracket-mini-btn danger', 'Desfazer vitória', 'undoMatchWin', [roundName, match.id], false);
+          html += '</div>';
         }
         html += '</div>';
       });
@@ -1235,10 +1386,10 @@
 
       const match = current.match;
       let html = '<div class="current-match-card">';
-      html += '<div class="scoreboard-stage">Partida atual • ' + current.roundTitle + '</div>';
+      html += '<div class="scoreboard-stage">Partida atual • ' + escapeHtml(current.roundTitle) + '</div>';
       html += '<div class="scoreboard-mode-row">';
       html += '<div class="scoreboard-mode-badge">' + (match.bestOf3 ? 'Melhor de 3' : 'Partida única') + '</div>';
-      html += '<button class="scoreboard-btn alt" type="button" onclick="toggleBestOf3(\'' + current.roundKey + '\',\'' + match.id + '\')">' + (match.bestOf3 ? 'Trocar para MD1' : 'Trocar para MD3') + '</button>';
+      html += createButtonHTML('scoreboard-btn alt', match.bestOf3 ? 'Trocar para MD1' : 'Trocar para MD3', 'toggleBestOf3', [current.roundKey, match.id], false);
       html += '</div>';
       html += '<div class="scoreboard-shell">';
       html += '<div class="scoreboard-side"><div class="scoreboard-player">' + escapeHtml(match.player1) + '</div></div>';
@@ -1248,8 +1399,9 @@
       html += '<div class="scoreboard-side"><div class="scoreboard-player">' + escapeHtml(match.player2) + '</div></div>';
       html += '</div>';
       html += '<div class="scoreboard-actions">';
-      html += '<button class="scoreboard-btn" type="button" onclick="selectWinner(\'' + current.roundKey + '\',\'' + match.id + '\',\'' + escapeHtml(match.player1).replace(/&#039;/g, "\'") + '\')">Vitória de ' + escapeHtml(match.player1) + '</button>';
-      html += '<button class="scoreboard-btn" type="button" onclick="selectWinner(\'' + current.roundKey + '\',\'' + match.id + '\',\'' + escapeHtml(match.player2).replace(/&#039;/g, "\'") + '\')">Vitória de ' + escapeHtml(match.player2) + '</button>';
+      html += createButtonHTML('scoreboard-btn', 'Vitória de ' + match.player1, 'selectWinner', [current.roundKey, match.id, match.player1], false);
+      html += createButtonHTML('scoreboard-btn', 'Vitória de ' + match.player2, 'selectWinner', [current.roundKey, match.id, match.player2], false);
+      html += '<div style="grid-column: 1 / -1;">' + createButtonHTML('scoreboard-btn alt', 'Desfazer última vitória', 'undoCurrentMatchWin', [current.roundKey, match.id], !match.history || match.history.length === 0) + '</div>';
       html += '</div>';
       if (match.bestOf3) {
         html += '<div class="scoreboard-help">Quem chegar a 2 vitórias primeiro avança.</div>';
@@ -1258,18 +1410,64 @@
       return html;
     }
 
+    function renderGames() {
+      const container = document.getElementById('gamesList');
+      container.innerHTML = '';
+
+      state.games.forEach(function(game) {
+        const item = document.createElement('div');
+        item.className = 'list-item';
+
+        const left = document.createElement('div');
+        left.innerHTML = '<strong>' + escapeHtml(game) + '</strong>' + (state.drawnGames.includes(game) ? '<div class="tag">Já sorteado</div>' : '');
+
+        const btn = document.createElement('button');
+        btn.className = 'btn danger small';
+        btn.type = 'button';
+        btn.textContent = '×';
+        btn.onclick = function() { removeGame(game); };
+
+        item.appendChild(left);
+        item.appendChild(btn);
+        container.appendChild(item);
+      });
+    }
+
+    function renderPlayers() {
+      const container = document.getElementById('playersList');
+      container.innerHTML = '';
+
+      state.players.forEach(function(player) {
+        const item = document.createElement('div');
+        item.className = 'list-item';
+
+        const left = document.createElement('div');
+        left.innerHTML = '<strong>' + escapeHtml(player) + '</strong>';
+
+        const btn = document.createElement('button');
+        btn.className = 'btn danger small';
+        btn.type = 'button';
+        btn.textContent = '×';
+        btn.onclick = function() { removePlayer(player); };
+
+        item.appendChild(left);
+        item.appendChild(btn);
+        container.appendChild(item);
+      });
+    }
+
     function renderTournament() {
-      const currentGame = document.getElementById("currentGame");
-      const area = document.getElementById("tournamentArea");
-      const drawBtn = document.getElementById("drawGameBtn");
+      const currentGame = document.getElementById('currentGame');
+      const area = document.getElementById('tournamentArea');
+      const drawBtn = document.getElementById('drawGameBtn');
       const remaining = getAvailableGames();
 
-      document.getElementById("remainingGames").textContent = remaining.length;
-      document.getElementById("remainingGamesBadge").textContent = remaining.length;
-      drawBtn.disabled = !!state.tournament || remaining.length === 0 || state.players.length < 4;
+      document.getElementById('remainingGames').textContent = remaining.length;
+      document.getElementById('remainingGamesBadge').textContent = remaining.length;
+      drawBtn.disabled = !!state.tournament || remaining.length === 0 || state.players.length < 4 || state.isDrawing;
 
       if (!state.tournament) {
-        currentGame.textContent = "Nenhum jogo sorteado";
+        currentGame.textContent = 'Nenhum jogo sorteado';
         area.innerHTML = '<p class="muted">Quando um jogo for sorteado, os confrontos vão aparecer aqui.</p>';
         return;
       }
@@ -1277,7 +1475,6 @@
       currentGame.textContent = state.tournament.game;
 
       let html = '<div class="bracket-board">';
-
       html += createCurrentMatchHTML();
 
       if (state.tournament.byes.length) {
@@ -1291,9 +1488,7 @@
       html += createBracketColumn('3º lugar', state.tournament.rounds.thirdPlace);
       html += '</div>';
 
-      
-
-      if (state.tournament.champion) {
+      if (state.tournament.champion && state.tournament.vice && state.tournament.third) {
         html += '<div class="card" style="padding:12px; margin-bottom:0;">';
         html += '<h3>Resultado final</h3>';
         html += '<div class="podium">';
@@ -1302,8 +1497,9 @@
         html += '<div><strong>🥉 Terceiro:</strong> ' + escapeHtml(state.tournament.third) + '</div>';
         html += '</div>';
         html += '<div class="footer-actions">';
-        html += '<button class="btn full" onclick="applyPoints()" ' + (state.tournament.pointsApplied ? 'disabled' : '') + '>Aplicar pontos</button>';
-        html += '<button class="btn outline full" onclick="closeTournament()" ' + (!state.tournament.pointsApplied ? 'disabled' : '') + '>Encerrar torneio atual</button>';
+        html += createButtonHTML('btn full', 'Aplicar pontos', 'applyPoints', [], state.tournament.pointsApplied);
+        html += createButtonHTML('btn outline full', 'Desfazer pontuação', 'undoPoints', [], !state.tournament.pointsApplied);
+        html += createButtonHTML('btn outline full', 'Encerrar torneio atual', 'closeTournament', [], !state.tournament.pointsApplied);
         html += '</div>';
         html += '</div>';
       }
@@ -1313,7 +1509,7 @@
     }
 
     function renderRanking() {
-      const area = document.getElementById("rankingArea");
+      const area = document.getElementById('rankingArea');
       const ranking = Object.entries(state.scores).sort(function(a, b) {
         if (b[1] !== a[1]) return b[1] - a[1];
         return a[0].localeCompare(b[0]);
@@ -1325,11 +1521,18 @@
       }
 
       let html = '<table class="ranking-table"><thead><tr><th>#</th><th>Jogador</th><th>Pontos</th></tr></thead><tbody>';
-
       ranking.forEach(function(item, index) {
-        html += '<tr><td>' + (index + 1) + '</td><td>' + escapeHtml(item[0]) + '</td><td>' + item[1] + '</td></tr>';
+        const playerName = item[0];
+        html += '<tr>';
+        html += '<td>' + (index + 1) + '</td>';
+        html += '<td>' + escapeHtml(playerName) + '</td>';
+        html += '<td><div class="ranking-actions">';
+        html += createButtonHTML('ranking-step-btn danger', '−', 'adjustPlayerScore', [playerName, '-1'], false);
+        html += '<span style="min-width:26px; display:inline-flex; align-items:center; justify-content:center;">' + item[1] + '</span>';
+        html += createButtonHTML('ranking-step-btn', '+', 'adjustPlayerScore', [playerName, '1'], false);
+        html += '</div></td>';
+        html += '</tr>';
       });
-
       html += '</tbody></table>';
       area.innerHTML = html;
     }
@@ -1354,17 +1557,42 @@
       renderRanking();
     }
 
-    document.getElementById("addGameBtn").addEventListener("click", addGame);
-    document.getElementById("addPlayerBtn").addEventListener("click", addPlayer);
-    document.getElementById("drawGameBtn").addEventListener("click", drawGame);
-    document.getElementById("resetBtn").addEventListener("click", resetAll);
+    function runSelfTests() {
+      try {
+        console.assert(typeof createMatch === 'function', 'createMatch deve existir');
 
-    document.getElementById("newGameInput").addEventListener("keydown", function(event) {
-      if (event.key === "Enter") addGame();
+        const md3 = createMatch('t-1', 'A', 'B');
+        md3.bestOf3 = true;
+        md3.history.push('A', 'B', 'A');
+        rebuildMatchState(md3);
+        console.assert(md3.score1 === 2 && md3.score2 === 1, 'MD3 deve recalcular placar');
+        console.assert(md3.winner === 'A', 'MD3 deve definir vencedor correto');
+
+        const md1 = createMatch('t-2', 'A', 'B');
+        md1.history.push('B');
+        rebuildMatchState(md1);
+        console.assert(md1.score1 === 0 && md1.score2 === 1, 'MD1 deve recalcular placar');
+        console.assert(md1.winner === 'B', 'MD1 deve definir vencedor correto');
+
+        const safe = createButtonHTML('btn', "Nome ' especial", 'noop', ["A'B", '1'], false);
+        console.assert(safe.includes("onclick=\"noop('A\\'B','1')\""), 'createButtonHTML deve escapar argumentos JS');
+        console.assert(safe.includes('Nome &#039; especial'), 'createButtonHTML deve escapar label HTML');
+      } catch (error) {
+        console.error('Falha nos auto-testes:', error);
+      }
+    }
+
+    document.getElementById('addGameBtn').addEventListener('click', addGame);
+    document.getElementById('addPlayerBtn').addEventListener('click', addPlayer);
+    document.getElementById('drawGameBtn').addEventListener('click', drawGame);
+    document.getElementById('resetBtn').addEventListener('click', resetAll);
+
+    document.getElementById('newGameInput').addEventListener('keydown', function(event) {
+      if (event.key === 'Enter') addGame();
     });
 
-    document.getElementById("newPlayerInput").addEventListener("keydown", function(event) {
-      if (event.key === "Enter") addPlayer();
+    document.getElementById('newPlayerInput').addEventListener('keydown', function(event) {
+      if (event.key === 'Enter') addPlayer();
     });
 
     document.querySelectorAll('.nav-link').forEach(function(button) {
@@ -1376,11 +1604,19 @@
     ensureInitialData();
     setActiveSection('secao-sorteio');
     render();
+    runSelfTests();
 
     window.selectWinner = selectWinner;
     window.toggleBestOf3 = toggleBestOf3;
+    window.undoCurrentMatchWin = undoCurrentMatchWin;
+    window.undoMatchWin = undoMatchWin;
     window.applyPoints = applyPoints;
+    window.undoPoints = undoPoints;
+    window.adjustPlayerScore = function(playerName, delta) {
+      adjustPlayerScore(playerName, Number(delta));
+    };
     window.closeTournament = closeTournament;
+    window.noop = function() {};
   </script>
 </body>
 </html>
